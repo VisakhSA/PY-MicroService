@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - LegendApi
+      - LegendApi/**
 
 env:
   DOCKER_IMAGE: dockervisakh/legendimg
