@@ -32,6 +32,6 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Push Docker Image
-      uses: docker/action/push@v2
+      uses: docker/push-action@v2
       with:
         tags: "$DOCKER_IMAGE:$DOCKER_TAG"
