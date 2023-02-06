@@ -1,4 +1,4 @@
-name: Build the image, Push to registry, Deploy - Legend
+name: Build the image, Push to registry, Deploy - Mongo
 
 on:
   push:
