@@ -25,6 +25,6 @@ jobs:
         script: |
           sudo apt-get update
           docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD"
-          docker-compose pull
-          docker-compose down
-          docker-compose up -d
+          pwd
+          ls
+          
