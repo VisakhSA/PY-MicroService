@@ -1,17 +1,17 @@
 version: '3.1'
 services:
   mylegendapi:
-    image: legendimg:1.0
+    image: dockervisakh/legendimg:latest
     restart: always
     ports: 
       - 81:81
   mysportapi:
-    image: sportimg:1.0
+    image: dockervisakh/sportimg:latest
     restart: always
     ports:
       - 80:80
   mymongo:
-    image: mongoapp
+    image: dockervisakh/mongoapp:latest
     restart: always
     volumes:
       - mymongodata:/data/db
