@@ -8,7 +8,7 @@ on:
       - SportApi
 
 env:
-  DOCKER_IMAGE: sportimg
+  DOCKER_IMAGE: dockervisakh/sportimg
   DOCKER_TAG: latest
 
 jobs:
