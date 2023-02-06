@@ -28,6 +28,7 @@ jobs:
           cd PY-MicroService
           git pull origin main
           docker compose down
+          docker image prune -a -f
           docker compose up -d
           
           
