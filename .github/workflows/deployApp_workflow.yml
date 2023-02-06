@@ -1,0 +1,36 @@
+name: Deploy Docker Compose
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  SERVER_IP: 165.22.210.88
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH key
+      run: echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ssh.pem
+      env:
+        SSH_PRIVATE_KEY: ${{ env.SSH_PRIVATE_KEY }}
+
+    - name: SSH into server
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ env.SERVER_IP }}
+        username: root
+        key: ssh.pem
+        script: |
+          sudo apt-get update
+          docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD"
+          docker-compose pull
+          docker-compose down
+          docker-compose up -d
