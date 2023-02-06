@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  mylegendapi:
+    image: legendimg:1.0
+    restart: always
+    ports: 
+      - 81:81
+  mysportapi:
+    image: sportimg:1.0
+    restart: always
+    ports:
+      - 80:80
+  mymongo:
+    image: mongoapp
+    restart: always
+    volumes:
+      - mymongodata:/data/db
+  mymongoexp:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mymongo
+volumes:
+  mymongodata:
+    driver: local
