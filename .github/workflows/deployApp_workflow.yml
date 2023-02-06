@@ -25,6 +25,9 @@ jobs:
         script: |
           sudo apt-get update
           docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD"
-          pwd
-          ls
+          cd PY-MicroService
+          git pull origin main
+          docker compose down
+          docker compose up -d
+          
           
