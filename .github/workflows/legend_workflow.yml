@@ -26,7 +26,10 @@ jobs:
           password: dockervisakh
       -
         name: Moving to LegendApi folder
-        run: cd LegendApi
+        run: |
+          pwd
+          ls
+          cd LegendApi
       -
         name: Build and push
         uses: docker/build-push-action@v4
