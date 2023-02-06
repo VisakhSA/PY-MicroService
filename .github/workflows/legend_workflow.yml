@@ -27,7 +27,6 @@ jobs:
       -
         name: Moving to LegendApi folder
         run: |
-          pwd
           ls
           cd LegendApi
       -
