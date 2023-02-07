@@ -89,7 +89,7 @@ async def list_legends():
     return legends
 
 
-@app.get("/sports", response_description="List all sports")
+@app.get("/sport", response_description="List all sports")
 async def list_sports():
     sports = requests.get(url='http://mysportapi:80/sports')
     sports = sports.json()
