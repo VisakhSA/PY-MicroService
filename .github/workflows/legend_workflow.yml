@@ -1,4 +1,4 @@
-name: Build the image, Push to registry, Deploy - Legend
+name: Legend Artifact build, push and deploy
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - LegendApi/**
 
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-latest
     
     steps:
@@ -31,3 +31,6 @@ jobs:
           context: "{{defaultContext}}:LegendApi"
           push: true
           tags: dockervisakh/legendimg:latest
+  deploy_artifact:
+    needs: build_and_push
+    uses: ./.github/workflows/deployApp_workflow.yml
