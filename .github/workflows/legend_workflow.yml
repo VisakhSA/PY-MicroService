@@ -34,3 +34,4 @@ jobs:
   deploy_artifact:
     needs: build_and_push
     uses: ./.github/workflows/deployApp_workflow.yml
+    secrets: ${{ secrets.SSH_PRIVATE_KEY }}
