@@ -62,7 +62,7 @@ class UpdateSportModel(BaseModel):
         }
 
 
-@app.post("/sport", response_description="Add new sport")
+@app.post("/sport", response_description="Add a new sport")
 async def create_sport(sport: SportModel = Body(...)):
     sport = jsonable_encoder(sport)
     new_sport = await db["sport"].insert_one(sport)
