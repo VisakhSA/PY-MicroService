@@ -2,6 +2,9 @@ name: Deploy Docker Compose - Reusable
 
 on:
   workflow_call:
+    secrets:
+      SSH_PRIVATE_KEY:
+        required: true
 
 env:
   SERVER_IP: 165.22.210.88
