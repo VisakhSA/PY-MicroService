@@ -1,5 +1,4 @@
-name: Build the image, Push to registry, Deploy - Sport
-
+name: Sport Artifact build, push and deploy
 on:
   push:
     branches:
@@ -8,7 +7,7 @@ on:
       - SportApi/**
 
 jobs:
-  build-and-push-to-registry:
+  build_and_push:
     runs-on: ubuntu-latest
     
     steps:
@@ -31,3 +30,8 @@ jobs:
           context: "{{defaultContext}}:SportApi"
           push: true
           tags: dockervisakh/sportimg:latest
+  deploy_artifact:
+    needs: build_and_push
+    uses: ./.github/workflows/deployApp_workflow.yml
+    secrets: 
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
