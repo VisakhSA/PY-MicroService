@@ -1,9 +1,7 @@
-name: Deploy Docker Compose
+name: Deploy Docker Compose - Reusable
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
 
 env:
   SERVER_IP: 165.22.210.88
