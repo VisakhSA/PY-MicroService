@@ -10,7 +10,10 @@ from typing import Optional, List
 import motor.motor_asyncio
 
 app = FastAPI()
-client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://mymongo:27017')
+mylegendapi = os.getenv('mylegendapi')
+mymongo = os.getenv('mymongo')
+
+client = motor.motor_asyncio.AsyncIOMotorClient(f'mongodb://{mymongo}:27017')
 db = client.legend_sport
 
 
@@ -86,7 +89,7 @@ async def update_sport(id: str, sport: UpdateSportModel = Body(...)):
             if curr_name is not None:
                 data = {
                     "curr_name": curr_name["sportName"], "update_name": sport["sportName"]}
-                r = requests.put(url=f'http://mylegendapi:81/legend/multiupdate', data=json.dumps(data), headers={
+                r = requests.put(url=f'http://{mylegendapi}:81/legend/multiupdate', data=json.dumps(data), headers={
                                  'Content-Type': 'application/json', 'accept': 'application/json'})
                 r = r.json()
                 if "message" not in r:
@@ -110,7 +113,7 @@ async def delete_sport(id: str):
 
     if curr_name is not None:
         r = requests.delete(
-            url=f'http://mylegendapi:81/legend/multidelete?deleteName={curr_name["sportName"]}')
+            url=f'http://{mylegendapi}:81/legend/multidelete?deleteName={curr_name["sportName"]}')
         delete_result = await db["sport"].delete_one({"_id": id})
 
         if delete_result.deleted_count == 1:

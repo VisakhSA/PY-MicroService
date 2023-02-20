@@ -9,7 +9,10 @@ from typing import Optional, List
 import motor.motor_asyncio
 
 app = FastAPI()
-client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://mymongo:27017')
+mysportapi = os.getenv('mysportapi')
+mymongo = os.getenv('mymongo')
+
+client = motor.motor_asyncio.AsyncIOMotorClient(f'mongodb://{mymongo}:27017')
 db = client.legend_sport
 
 
@@ -71,7 +74,7 @@ class UpdateLegendModel(BaseModel):
 @app.post("/legend", response_description="Add new legend")
 async def create_legend(legend: LegendModel = Body(...)):
     legend = jsonable_encoder(legend)
-    sports = requests.get(url='http://mysportapi:80/sports')
+    sports = requests.get(url=f'http://{mysportapi}:80/sports')
     sports = sports.json()
     sport_name = []
     for i in sports:
@@ -91,7 +94,7 @@ async def list_legends():
 
 @app.get("/sports", response_description="List all the sports")
 async def list_sports():
-    sports = requests.get(url='http://mysportapi:80/sports')
+    sports = requests.get(url=f'http://{mysportapi}:80/sports')
     sports = sports.json()
     sport_name = []
     for i in sports:

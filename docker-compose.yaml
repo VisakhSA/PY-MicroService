@@ -3,11 +3,17 @@ services:
   mylegendapi:
     image: dockervisakh/legendimg:latest
     restart: always
+    environment:
+      - mysportapi=mysportapi
+      - mymongo=mymongo
     ports: 
       - 81:81
   mysportapi:
     image: dockervisakh/sportimg:latest
     restart: always
+    environment:
+      - mylegendapi=mylegendapi
+      - mymongo=mymongo
     ports:
       - 80:80
   mymongo:
