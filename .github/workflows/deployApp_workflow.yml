@@ -14,22 +14,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: SSH into server
-      uses: appleboy/ssh-action@v0.1.7
-      with:
-        host: ${{ env.SERVER_IP }}
-        username: root
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          sudo apt-get update
-          docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD"
-          cd PY-MicroService
-          git pull origin main
-          docker compose down
-          docker image prune -a -f
-          docker compose up -d
-          
-          
+      - name: SSH into server
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ env.SERVER_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo apt-get update
+            docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD"
+            cd PY-MicroService
+            git pull origin main
+            docker compose down
+            docker image prune -a -f
+            docker compose up -d
