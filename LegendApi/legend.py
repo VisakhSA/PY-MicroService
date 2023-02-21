@@ -130,3 +130,4 @@ async def delete_legend(id: str):
         return {"message": "Successfully Deleted"}
 
     raise HTTPException(status_code=404, detail=f"legend_id {id} not found")
+#
