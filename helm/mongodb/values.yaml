@@ -1,0 +1,6 @@
+app:
+  name: dbname
+  image: imgname:latest
+  sname: "dbname"
+  pvcname: dbnamedata-pvc
+  replicas: 1

@@ -1,0 +1,10 @@
+app:
+  name: mysportapi
+  port: 80
+  image: dockervisakh/sportimg:latest
+  env:
+    - var: mylegendapi
+    - var: mymongo
+  geturl: /sports
+  lbname: sport-loadbalancer
+  replicas: 1

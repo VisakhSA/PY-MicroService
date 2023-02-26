@@ -1,0 +1,6 @@
+app:
+  name: mymongo
+  image: dockervisakh/mongoapp:latest
+  sname: "mymongo"
+  pvcname: mymongodata-pvc
+  replicas: 1

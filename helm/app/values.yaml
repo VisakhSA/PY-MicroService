@@ -1,0 +1,10 @@
+app:
+  name: api-name
+  port: 81
+  image: imgname:latest
+  env:
+    - var: var1
+    - var: var2
+  geturl: /url
+  lbname: api-name-loadbalancer
+  replicas: 1

@@ -1,0 +1,10 @@
+app:
+  name: mylegendapi
+  port: 81
+  image: dockervisakh/legendimg:latest
+  env:
+    - var: mysportapi
+    - var: mymongo
+  geturl: /legends
+  lbname: legend-loadbalancer
+  replicas: 1
